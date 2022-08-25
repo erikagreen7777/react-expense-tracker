@@ -1,6 +1,6 @@
 // shift + option + f to document format
 import ExpenseDate from "./ExpenseDate";
-import Card from "./Card";
+import Card  from "../UI/Card";
 import "./ExpenseItem.css";
 
 function ExpenseItem(props) {
@@ -11,6 +11,7 @@ function ExpenseItem(props) {
         <h2>{props.title}</h2>
       </div>
       <div className="expense-item__price">${props.amount}</div>
+      <button>Change Title</button>
     </Card>
   );
 }
