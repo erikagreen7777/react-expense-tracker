@@ -2,19 +2,23 @@ import "./Expenses.css";
 import ExpenseItem from "./ExpenseItem";
 import Card from "../UI/Card";
 import ExpensesFilter from "./ExpensesFilter";
+import React, { useState } from "react";
 
 function Expenses(props) {
+  const [filteredYear, setFilteredYear] = useState("2022");
 
   const saveExpensesFilterHandler = (selectedExpenseYear) => {
-    const expenseYear = selectedExpenseYear;
-    // console.log("it's been passed up: " + selectedExpenseYear);
-    props.onChangeYear(expenseYear);
+    // console.log(selectedExpenseYear)
+    setFilteredYear(selectedExpenseYear);
   };
 
   return (
     <div>
-      <ExpensesFilter onSaveExpensesFilter={saveExpensesFilterHandler} />
       <Card className="expenses">
+        <ExpensesFilter
+          selected={filteredYear}
+          onSaveExpensesFilter={saveExpensesFilterHandler}
+        />
         <ExpenseItem {...props[0]} />
         <ExpenseItem {...props[1]} />
         <ExpenseItem {...props[2]} />
