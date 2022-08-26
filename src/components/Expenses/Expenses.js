@@ -8,13 +8,15 @@ function Expenses(props) {
   const [filteredYear, setFilteredYear] = useState("2022");
 
   const saveExpensesFilterHandler = (selectedExpenseYear) => {
-    // console.log(selectedExpenseYear)
     setFilteredYear(selectedExpenseYear);
   };
 
   return (
     <div>
       <Card className="expenses">
+        {/* Two way binding => controlled component 
+        (the value and changes to value are handled in parent 
+        component instead of the component itself */}
         <ExpensesFilter
           selected={filteredYear}
           onSaveExpensesFilter={saveExpensesFilterHandler}
