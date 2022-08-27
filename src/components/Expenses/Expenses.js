@@ -6,22 +6,26 @@ import React, { useState } from "react";
 
 function Expenses(props) {
   const [filteredYear, setFilteredYear] = useState("2021");
-  const [expensesObject, setExpensesObject] = useState(props.items);
+  // const [expensesObject, setExpensesObject] = useState(props.items);
 
-  const saveExpensesObjectHandler = (
-    filteredExpensesObject,
-    selectedExpenseYear
-  ) => {
-    setExpensesObject(
-      filteredExpensesObject.filter(
-        (x) => x.date.getFullYear() === parseInt(selectedExpenseYear)
-      )
-    );
-  };
+  // const saveExpensesObjectHandler = (
+  //   filteredExpensesObject,
+  //   selectedExpenseYear
+  // ) => {
+  //   setExpensesObject(
+    //   filteredExpensesObject.filter(
+    //     (x) => x.date.getFullYear() === parseInt(selectedExpenseYear)
+    //   )
+    // );
+  // };
+
+  const filteredExpenses = props.items.filter(expense => {
+    return expense.date.getFullYear().toString() === filteredYear;
+  });
 
   const saveExpensesFilterHandler = (selectedExpenseYear) => {
     setFilteredYear(selectedExpenseYear);
-    saveExpensesObjectHandler(props.items, selectedExpenseYear);
+    // saveExpensesObjectHandler(props.items, selectedExpenseYear);
   };
 
   return (
@@ -35,7 +39,7 @@ function Expenses(props) {
           onSaveExpensesFilter={saveExpensesFilterHandler}
         />
 
-        {expensesObject.map((expense) => (
+        {filteredExpenses.map((expense) => (
           <ExpenseItem
             key={expense.id}
             title={expense.title}
