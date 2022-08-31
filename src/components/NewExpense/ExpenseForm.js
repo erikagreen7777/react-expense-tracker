@@ -5,7 +5,6 @@ const ExpenseForm = (props) => {
   const [enteredTitle, setEnteredTitle] = useState("");
   const [enteredAmount, setEnteredAmount] = useState("");
   const [enteredDate, setEnteredDate] = useState("");
-  const [viewExpenseForm, setViewExpenseForm] = useState(false);
 
   //   const [userInput, setUserInput] = useState({
   //     enteredTitle: "",
@@ -13,13 +12,6 @@ const ExpenseForm = (props) => {
   //     enteredDate: "",
   //   });
 
-  const addNewExpenseHandler = (event) => {
-    if (viewExpenseForm === false) {
-      setViewExpenseForm(true);
-    } else {
-      setViewExpenseForm(false);
-    }
-  };
   const titleChangeHandler = (event) => {
     // OPTION 1
     setEnteredTitle(event.target.value);
@@ -59,13 +51,6 @@ const ExpenseForm = (props) => {
     setEnteredDate("");
   };
 
-  if (viewExpenseForm === false) {
-    return (
-      <div className="add-new-expense-button__div">
-        <button onClick={addNewExpenseHandler}>Add New Expense</button>
-      </div>
-    );
-  } else {
     return (
       <form onSubmit={submitHandler}>
         <div className="new-expense__controls">
@@ -99,12 +84,11 @@ const ExpenseForm = (props) => {
           </div>
         </div>
         <div className="new-expense__actions">
-          <button onClick={addNewExpenseHandler}>Cancel</button>
+          <button type="button" onClick={props.onCancel}>Cancel</button>
           <button type="submit">Add Expense</button>
         </div>
       </form>
     );
-  }
 };
 
 export default ExpenseForm;
